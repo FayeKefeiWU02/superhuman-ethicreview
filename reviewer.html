@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>You Are the Reviewer</title>
+  <link rel="stylesheet" href="reviewer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0d0b10;
+      color: #a0c0d1;
+      font-family: 'Inconsolata', monospace;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #a0c0d1;
+    }
+
+    .code-text {
+      font-size: 18px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title-bar">
+      <div class="window-buttons">
+        <div onclick="window.close()"></div>
+        <div onclick="alert('Minimize functionality is not implemented.')"></div>
+        <div onclick="alert('Maximize functionality is not implemented.')"></div>
+      </div>
+    </div>
+
+    <img src="image/4.png" alt="decoration" class="image" />
+    <img src="image/5.png" alt="decoration" class="image2" />
+
+    <div class="code-text-container">
+      <div class="code-text" id="codeText">
+        ⚠️ >> [Audience Name], you are now the official Ethical Reviewer™ for the X-Cervical Spine Pro 2.0!  
+        >> Standard ethics procedure has been streamlined into Fast-Track Mode  
+      </div>
+    </div>
+  </div>
+</body>
+
+  <script>
+    const name = localStorage.getItem('userName') || "Unknown User";
+
+    const codeText = document.getElementById('codeText');
+
+    codeText.innerHTML = codeText.innerHTML.replace(/\[Audience Name\]/g, name);
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>System Access</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet"/>
+</head>
+<body class="home-page">
+  <div class="container">
+
+    <div class="title-bar">
+      <div class="window-buttons">
+        <div onclick="window.close()"></div>
+        <div onclick="alert('Minimize functionality is not implemented.')"></div>
+        <div onclick="alert('Maximize functionality is not implemented.')"></div>
+      </div>
+      <div class="date-box">16-07-2125</div>
+    </div>
+
+    <div class="ellipse-cluster">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="hud-lines"></div>
+
+    <div class="inner-box">
+      <div class="warning">
+        <h2> Welcome to the Future Technology Ethics Bureau™  </h2>
+        <div class="code-text">
+          ⚠️ Congradulation!
+
+          >> Become an Ethical Reviewer in Just One Second!
+          >> No barriers. Everyone qualifies.
+          
+          📌 No experience required | No degree needed |  
+        </div>
+      </div>
+    </div>
+
+    <div class="inner-box">
+      <div class="input-area">
+        <input type="text" id="userName" placeholder="Enter Your Name" />
+        <button onclick="startLoading()">Enter</button>
+      </div>
+    </div>
+    
+    <script>
+      function startLoading() {
+        const userName = document.getElementById("userName").value || "Unknown User";
+        localStorage.setItem("userName", userName);  // 把名字保存到 localStorage
+        window.location.href = "loading.html";       // 然后跳转
+      }
+    </script>    
+    
+    <img src="image/1.png" alt="decoration" class="corner-image" />
+    <div class="image-mask"></div>
+  </div>
+
+  <script>
+    function confirmName() {
+      const userName = document.getElementById('userName').value;
+      if (userName) {
+        localStorage.setItem('userName', userName);
+        window.location.href = "reviewer.html";
+      } else {
+        alert('Please enter your name.');
+      }
+    }
+
+  </script>
+</body>
+</html>
+

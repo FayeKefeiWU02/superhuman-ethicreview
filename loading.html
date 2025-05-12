@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <style>
+    body {
+      background-color: black;
+      color: #a0c0d1;
+      font-family: 'Inconsolata', monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .progress-container {
+      width: 80%;
+      background-color: #333;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #8aabbd;
+    }
+
+    .progress-bar {
+      height: 30px;
+      width: 0%;
+      background-color: #a0c0d1;
+      transition: width 0.2s;
+    }
+
+    .percentage {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <div class="percentage" id="percentage">0%</div>
+
+  <script>
+    let progress = 0;
+    const progressBar = document.getElementById("progressBar");
+    const percentage = document.getElementById("percentage");
+
+    const interval = setInterval(() => {
+      if (progress < 100) {
+        progress++;
+        progressBar.style.width = progress + "%";
+        percentage.textContent = progress + "%";
+      } else {
+        clearInterval(interval);
+        window.location.href = "reviewer.html";
+      }
+    }, 30); // 100 steps x 30ms = 3s total
+  </script>
+</body>
+</html>
+
