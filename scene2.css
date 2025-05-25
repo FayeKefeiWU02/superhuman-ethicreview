@@ -1,0 +1,252 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: #000;
+  color: #a0c0d1;
+  font-family: 'Inconsolata', monospace;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 1. 最外层容器 */
+.container {
+  width: 90%;
+  max-width: 1600px;
+  height: 99vh;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #a0c0d1;
+  border-radius: 10px;
+  background-color: #111;
+  box-shadow: 0 0 60px 5px #8aabbd;
+  position: relative;
+  padding: 60px 40px 40px; /* 上60px，左右40px，下40px */
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
+}
+
+/* 2. 装饰元素 (style.css 提供) */
+.title-bar,
+.ellipse-cluster,
+.hud-lines {
+  /* 由 style.css 定义 */
+}
+
+/* 3. 通用 inner-box */
+.inner-box {
+  flex: 0 0 auto;
+  border: 1px solid #a0c0d1;
+  border-radius: 10px;
+  background: #111;
+  box-shadow: 0 0 10px #8aabbd;
+  margin: 1rem 0;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+/* 4. “提案区” inner-box：占满中间剩余空间 */
+.container > .inner-box:not(.button-box) {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* 4.1 提案区标题与分割线 */
+.container > .inner-box:not(.button-box) > h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.container > .inner-box:not(.button-box) > .divider {
+  border: none;
+  border-bottom: 1px solid #a0c0d1;
+  margin-bottom: 1rem;
+}
+
+/* 5. Grid 布局：3×3，四角小框 + 中央大图 */
+.proposal-container.grid-layout {
+  flex: 1 1 auto;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto minmax(0,1fr) minmax(0,1fr);
+  gap: 0.5rem;
+  align-items: stretch;
+  justify-items: center;
+  align-content: stretch;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* 6. 四角小框 */
+.proposal-box {
+  position: relative; /* 为提示定位 */
+  box-sizing: border-box;
+  padding: 0.5rem;
+  width: 20vw;
+  max-width: 200px;
+  background: rgba(17,17,17,0.5);
+  border: 1px solid #a0c0d1;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  overflow: visible; /* 允许提示层可见 */
+  height: 100%;
+  align-self: stretch;
+  justify-self: stretch;
+}
+.proposal-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.box-text {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: #c0e0f0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* 四角定位 */
+.box-tl { grid-area: 2 / 1 / 2 / 2; }
+.box-tr { grid-area: 2 / 3 / 2 / 4; }
+.box-bl { grid-area: 3 / 1 / 4 / 2; }
+.box-br { grid-area: 3 / 3 / 4 / 4; }
+
+/* 7. 中央大图 */
+.main-image {
+  grid-area: 2 / 2 / 4 / 3;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  background: #111;
+  border: 1px solid #a0c0d1;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* 8. 按钮区 (.button-box) 固定高度 60px */
+.container > .inner-box.button-box {
+  flex: 0 0 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* 9. 按钮排版 */
+.button-row {
+  display: flex;
+  gap: 1rem;
+}
+.button-row button {
+  flex: 1 1 120px;
+  max-width: 150px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: #a0c0d1;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 6px #8aabbd;
+  transition: background 0.2s, transform 0.2s;
+}
+.button-row button:hover {
+  background: #5b9abf;
+}
+
+/* 10. 底部装饰图 */
+.corner-image {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 80px;
+  height: 50px;
+  z-index: 2;
+}
+.image-mask {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 80px;
+  height: 50px;
+  background: #000;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 11. 响应式 */
+@media (max-width: 768px) {
+  .container { overflow: auto; }
+  .container > .inner-box:not(.button-box) {
+    flex: none;
+    height: auto;
+  }
+  .proposal-container.grid-layout {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+  .proposal-box,
+  .main-image {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+  }
+  .container > .inner-box.button-box {
+    flex: none;
+    height: auto;
+  }
+}
+
+/* 12. 悬浮填充提示 */
+.proposal-box::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+  border-radius: 6px;
+  z-index: 2;
+}
+.proposal-box:hover::after {
+  opacity: 1;
+}

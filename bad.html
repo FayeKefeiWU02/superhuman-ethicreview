@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Scene 4A – Bad Ending</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    .progress-bar {
+      position: relative;
+      height: 6px;
+      border: 1px solid #a0c0d1;
+      border-radius: 4px;
+      background: #111;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .progress-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(to right, #a0c0d1, rgba(58,170,255,0.3));
+      animation: progressAnim 2s ease-in-out infinite;
+    }
+    @keyframes progressAnim {
+      0%   { width: 0%; }
+      50%  { width: 75%; }
+      100% { width: 0%; }
+    }
+    .inner-box.warning .code-text {
+      margin-top: 0 !important;
+    }
+  </style>
+</head>
+<body class="home-page">
+  <div class="container">
+
+    <!-- Title bar -->
+    <div class="title-bar">
+      <div class="window-buttons">
+        <div onclick="window.close()"></div>
+        <div onclick="alert('Minimize not implemented')"></div>
+        <div onclick="alert('Maximize not implemented')"></div>
+      </div>
+      <div class="date-box">16-07-2125</div>
+    </div>
+
+    <!-- 上半区 -->
+    <div class="inner-box warning"
+         style="flex: 3; margin: 0; overflow: auto; padding: 1.5rem 1rem 0.6rem;">
+      <h2 class="warning-title"
+          style="margin-bottom: 8px;
+                 font-size: 25px;
+                 font-weight: 700;
+                 letter-spacing: 1px;
+                 color: #a0c0d1;">
+        SYSTEM DIMMED TO MINIMUM FUNCTIONAL STATE
+      </h2>
+
+      <div class="progress-bar"></div>
+
+      <div class="code-text" style="margin-top: 1rem;">
+        ⚠️  Approval logged. 27 people suffered central nervous system damage from the device.<br><br>
+        ⚙️ Safeguards disabled—suffering normalized across the network.
+      </div>
+    </div>
+
+    <!-- 下半区 -->
+    <div class="inner-box"
+         style="flex: 1; margin: 0; overflow: auto; padding: 0.6rem 1rem;">
+      <h2 class="warning-title"
+          style="margin-bottom: 8px;
+                 font-size: 25px;
+                 font-weight: 700;
+                 letter-spacing: 1px;
+                 color: #a0c0d1;">
+        [ Reviewer Status: Valid ]
+      </h2>
+      <div class="code-text" id="personal-message" style="
+        min-height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      ">
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // 自动跳转回首页
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 15000); // 15秒 = 15000毫秒
+
+    // 获取名字并插入文字
+    const name = localStorage.getItem('reviewerName') || 'Anonymous';
+    const messageBox = document.getElementById('personal-message');
+    messageBox.textContent = `${name} became an Ethical Reviewer.`;
+  </script>
+</body>
+</html>

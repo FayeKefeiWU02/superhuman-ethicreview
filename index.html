@@ -28,49 +28,62 @@
 
     <div class="inner-box">
       <div class="warning">
-        <h2> Welcome to the Future Technology Ethics Bureau™  </h2>
+        <h2>Welcome to the Future Technology Ethics Bureau™</h2>
         <div class="code-text">
-          ⚠️ Congradulation!
-
-          >> Become an Ethical Reviewer in Just One Second!
-          >> No barriers. Everyone qualifies.
-          
-          📌 No experience required | No degree needed |  
+          ⚠️ SYSTEM AUTHORIZATION COMPLETE<br><br>
+          >> Identity verification required<br>
+          >> Please set up your reviewer profile to continue<br><br>
+          📌 Estimated time to complete: &lt; 10 seconds
         </div>
       </div>
     </div>
 
-    <div class="inner-box">
+    <div class="inner-box register-box">
       <div class="input-area">
+        <label for="userName">Reviewer Name</label>
         <input type="text" id="userName" placeholder="Enter Your Name" />
-        <button onclick="startLoading()">Enter</button>
+
+<label for="genderOptions">Gender</label>
+<div id="genderOptions" class="gender-box">
+  <label><input type="radio" name="gender" value="male" /> Male</label>
+  <label><input type="radio" name="gender" value="female" /> Female</label>
+  <label><input type="radio" name="gender" value="other" /> Prefer Not To Say</label>
+</div>
+
+        <button id="enterBtn">Enter</button>
       </div>
     </div>
-    
-    <script>
-      function startLoading() {
-        const userName = document.getElementById("userName").value || "Unknown User";
-        localStorage.setItem("userName", userName);  // 把名字保存到 localStorage
-        window.location.href = "loading.html";       // 然后跳转
-      }
-    </script>    
-    
+
     <img src="image/1.png" alt="decoration" class="corner-image" />
     <div class="image-mask"></div>
   </div>
 
-  <script>
-    function confirmName() {
-      const userName = document.getElementById('userName').value;
-      if (userName) {
-        localStorage.setItem('userName', userName);
-        window.location.href = "reviewer.html";
-      } else {
-        alert('Please enter your name.');
-      }
-    }
+ <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const enterBtn = document.getElementById('enterBtn');
+    const userNameInput = document.getElementById('userName');
 
-  </script>
+    enterBtn.addEventListener('click', () => {
+      const name = userNameInput.value.trim() || 'Unknown';
+      const genderInputs = document.getElementsByName('gender');
+      let gender = 'unspecified';
+
+      for (const g of genderInputs) {
+        if (g.checked) {
+          gender = g.value;
+          break;
+        }
+      }
+
+      // 存储信息
+      localStorage.setItem('reviewerName', name);
+      localStorage.setItem('reviewerGender', gender);
+
+      // ✅ 先跳到 loading.html
+      window.location.href = 'loading.html';
+    });
+  });
+</script>
+
 </body>
 </html>
-

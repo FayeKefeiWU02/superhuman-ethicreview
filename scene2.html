@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proposal Review</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="scene2.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet"/>
+</head>
+<body class="home-page">
+  <div class="container">
+    <div class="title-bar">
+      <div class="window-buttons">
+        <div onclick="window.close()"></div>
+        <div onclick="alert('Minimize functionality is not implemented.')"></div>
+        <div onclick="alert('Maximize functionality is not implemented.')"></div>
+      </div>
+      <div class="date-box">16-07-2125</div>
+    </div>
+
+    <div class="ellipse-cluster"><div></div><div></div><div></div></div>
+    <div class="hud-lines"></div>
+
+    <div class="inner-box">
+      <h2>Review of technical proposals : X-Cervical Spine Pro 2.0</h2>
+      <hr class="divider"/>
+
+      <div class="proposal-container grid-layout">
+        <div class="proposal-box box-tl" data-tooltip="Modeled after a serpent’s spine, the device enables smooth, uninterrupted neck movement. Minor autonomous adjustments may occur. All functions remain within certified safety margins.">
+          <img src="image/9.png" alt="placeholder1" />
+          <div class="box-text">描述区域 1</div>
+        </div>
+
+        <div class="proposal-box box-tr" data-tooltip="Inspired by remora fish, the inner layer forms a natural suction interface with the skin. Once attached, it tends to stay in place for extended durations—ensuring unmatched stability during continuous wear.">
+          <img src="image/6.png" alt="placeholder2" />
+          <div class="box-text">描述区域 2</div>
+        </div>
+
+        <div class="main-image">
+          <img src="image/2.png" alt="Main Device"/>
+        </div>
+
+        <div class="proposal-box box-bl" data-tooltip="The dual stabilizers wrap seamlessly around the neck and shoulders, adjusting in micro-increments to match bone alignment. Most users report they forget it's even there—until they try to remove it.">
+          <img src="image/8.png" alt="placeholder3" />
+          <div class="box-text">描述区域 3</div>
+        </div>
+
+        <div class="proposal-box box-br" data-tooltip="Designed as a unifying element, the band discreetly stabilizes multiple contact points. Removal is not recommended once synchronization is achieved.">
+          <img src="image/7.png" alt="placeholder4" />
+          <div class="box-text">描述区域 4</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner-box button-box">
+      <div class="button-row">
+        <button id="approveBtn">Pass</button>
+        <button id="rejectBtn">Refuse</button>
+      </div>
+    </div>
+
+    <img src="image/1.png" alt="decoration" class="corner-image" />
+    <div class="image-mask"></div>
+  </div>
+
+  <script>
+    document.getElementById('approveBtn').addEventListener('click', () => {
+      // 点击 “Pass” 后跳转到 Good Ending
+      window.location.href = 'good.html';
+    });
+    document.getElementById('rejectBtn').addEventListener('click', () => {
+      // 点击 “Refuse” 后跳转到 Bad Ending
+      window.location.href = 'bad.html';
+    });
+  </script>
+</body>
+</html>
